@@ -1,1 +1,1 @@
-# PYGAME-STARTING-PROJECT
+pygame template for pygame
