@@ -321,10 +321,10 @@ class pause_menu_display(basic_display):
         )
 
         # Create buttons
-        button_width = 200
-        button_height = 60
+        button_width = 220
+        button_height = 70
         button_y_start = game.height / 2
-        button_spacing = 80
+        button_spacing = 100
 
         # Resume button
         self.resume_button = custom_button.Button(
