@@ -1,8 +1,7 @@
 import pygame
 
-
 class Custom_text:  # A class that generates text
-    def __init__(self, display, x, y, text, font=None, font_height=50, text_color='Black', background_color=None, center=True, append=True):
+    def __init__(self, display, x, y, text, font="fonts/VCR_OSD_MONO.ttf", font_height=50, text_color='Black', background_color=None, center=True, append=True):
 
         self.display = display
 

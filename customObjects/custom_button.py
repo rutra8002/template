@@ -20,7 +20,7 @@ class Button:  # A button class
             self.display.objects.append(self)  # Adding self to objects of the screen
 
         if text != None:  # if there is text it's put on the button
-            self.text = custom_text.Custom_text(self.display, self.x + self.width / 2, self.y + self.height / 2,text,  font=None, font_height=self.height // 2, text_color=text_color)
+            self.text = custom_text.Custom_text(self.display, self.x + self.width / 2, self.y + self.height / 2,text,  font="fonts/VCR_OSD_MONO.ttf", font_height=self.height // 2, text_color=text_color)
 
         self.outline_color = outline_color
         self.outline_width = outline_width
