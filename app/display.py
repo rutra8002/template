@@ -229,28 +229,14 @@ class options_display(basic_display):
 
 
         # VOLUME
-        self.sound_slider = slider.Slider(
-            self,
-            game.width / 2 - 150,
-            game.height / 2,
-            300,
-            20,
-            initial_value=self.game.sound_volume,
-            label="Sound Volume",
-            on_change=self.update_sound_volume
-        )
+        self.sound_slider = slider.Slider(self, game.width / 2 - 150, game.height / 2, 300, 20,
+                                          initial_value=self.game.sound_volume, label="Sound Volume",
+                                          on_change=self.update_sound_volume)
 
         # Music volume slider
-        self.music_slider = slider.Slider(
-            self,
-            game.width / 2 - 150,
-            game.height / 2 + 140,
-            300,
-            20,
-            initial_value=self.game.music_volume,
-            label="Music Volume",
-            on_change=self.update_music_volume
-        )
+        self.music_slider = slider.Slider(self, game.width / 2 - 150, game.height / 2 + 140, 300, 20,
+                                          initial_value=self.game.music_volume, label="Music Volume",
+                                          on_change=self.update_music_volume)
 
 
         # Apply button

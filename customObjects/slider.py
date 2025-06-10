@@ -3,7 +3,7 @@ from customObjects import custom_text
 
 class Slider:
     def __init__(self, display, x, y, width, height, min_value=0.0, max_value=1.0,
-                 initial_value=0.5, label=None, on_change=None, slider_type="volume"):
+                 initial_value=0.5, label=None, on_change=None):
         self.display = display
         self.x = x
         self.y = y
@@ -15,16 +15,14 @@ class Slider:
         self.label_text = label
         self.on_change = on_change
         self.dragging = False
-        self.slider_type = slider_type
 
-        # Handle dimensions
         self.handle_width = 20
         self.handle_height = height + 10
 
         # Add slider to display objects
         self.display.objects.append(self)
 
-        # Create label if provided
+        # Create label
         if self.label_text:
             self.label = custom_text.Custom_text(
                 self.display,
@@ -79,29 +77,18 @@ class Slider:
     def render(self):
         screen = self.display.screen
 
-        # Set colors based on slider type
-        if self.slider_type == "volume":
-            track_color = (150, 150, 150)
-            handle_color = (0, 255, 0)
-            filled_color = (0, 200, 0)
-        else:
-            track_color = (200, 200, 200)
-            handle_color = (0, 150, 255)
-            filled_color = (100, 100, 100)
+        track_color = (150, 150, 150)
+        handle_color = (0, 255, 0)
+        filled_color = (0, 200, 0)
 
-        # Draw track background
         pygame.draw.rect(screen, track_color, (self.x, self.y, self.width, self.height))
 
-        # Get handle position
         handle_x = self.get_handle_position()
 
-        # Draw filled portion
         filled_width = handle_x + self.handle_width / 2 - self.x
         pygame.draw.rect(screen, filled_color, (self.x, self.y, filled_width, self.height))
 
-        # Draw handle
         pygame.draw.rect(screen, handle_color,
                          (handle_x, self.y - 5, self.handle_width, self.handle_height))
 
-        # Border for track
         pygame.draw.rect(screen, (200, 200, 200), (self.x, self.y, self.width, self.height), 1)
