@@ -17,6 +17,8 @@ class Game:
         self.title = self.cfg['title']
         self.fullscreen = int(self.cfg['full-screen'])
         self.enable_debug = int(self.cfg['enable_debug'])
+        self.sound_volume = float(self.cfg['sound_volume'])
+        self.music_volume = float(self.cfg['music_volume'])
 
         self.objects_in_memory = 0
         self.clock = pygame.time.Clock()
@@ -35,6 +37,10 @@ class Game:
         pygame.display.set_caption(f"{self.title} (v {self.version})")
 
         self.sound_manager = sounds.SoundManager(self)
+
+        self.sound_manager.set_sound_volume(self.sound_volume)
+        self.sound_manager.set_music_volume(self.music_volume)
+
         self.sound_manager.load_music("background", "music/InTheBeninging.wav")
         self.sound_manager.play_music("background")
 

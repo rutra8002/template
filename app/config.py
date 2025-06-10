@@ -32,12 +32,14 @@ def set_config():  # Function that will create the config file or update it if i
 def generate_default_config_data(version):
     return {
         'version': version,
-        'width': 1280,
-        'height': 720,
-        'fps': 60,
+        'width': 1600,
+        'height': 900,
+        'fps': 240,
         'title': 'game',
         'full-screen': 0,
-        'enable_debug': 1
+        'enable_debug': 1,
+        'sound_volume': 1.0,
+        'music_volume': 1.0
     }
 
 

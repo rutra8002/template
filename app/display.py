@@ -1,4 +1,4 @@
-from customObjects import custom_images, custom_text, custom_button
+from customObjects import custom_images, custom_text, custom_button, slider
 from particlesystem import particle_system, particle_generator
 import random
 import pygame
@@ -193,7 +193,7 @@ class options_display(basic_display):
         self.fps_text = custom_text.Custom_text(
             self,
             game.width / 2,
-            game.height / 2,
+            game.height / 2 - 150,
             f"FPS: {self.fps_options[self.current_fps_index]}",
             text_color='white',
             font_height=30
@@ -203,7 +203,7 @@ class options_display(basic_display):
             self,
             self.prev_fps,
             game.width / 2 - button_width - 20,
-            game.height / 2 - button_height/2,
+            game.height / 2 - button_height/2 - 150,
             50,
             button_height,
             color=(40, 40, 120),
@@ -217,7 +217,7 @@ class options_display(basic_display):
             self,
             self.next_fps,
             game.width / 2 + button_width - 30,
-            game.height / 2 - button_height/2,
+            game.height / 2 - button_height/2 - 150,
             50,
             button_height,
             color=(40, 40, 120),
@@ -226,6 +226,32 @@ class options_display(basic_display):
             outline_color=(100, 100, 255),
             outline_width=3
         )
+
+
+        # VOLUME
+        self.sound_slider = slider.Slider(
+            self,
+            game.width / 2 - 150,
+            game.height / 2,
+            300,
+            20,
+            initial_value=self.game.sound_volume,
+            label="Sound Volume",
+            on_change=self.update_sound_volume
+        )
+
+        # Music volume slider
+        self.music_slider = slider.Slider(
+            self,
+            game.width / 2 - 150,
+            game.height / 2 + 140,
+            300,
+            20,
+            initial_value=self.game.music_volume,
+            label="Music Volume",
+            on_change=self.update_music_volume
+        )
+
 
         # Apply button
         self.apply_button = custom_button.Button(
@@ -257,7 +283,11 @@ class options_display(basic_display):
             outline_width=3
         )
 
+    def update_sound_volume(self, value):
+        self.game.sound_manager.set_sound_volume(value)
 
+    def update_music_volume(self, value):
+        self.game.sound_manager.set_music_volume(value)
 
     def prev_fps(self):
         self.current_fps_index = (self.current_fps_index - 1) % len(self.fps_options)
@@ -281,7 +311,8 @@ class options_display(basic_display):
 
 
         config['CONFIG']['fps'] = str(new_fps)
-
+        config['CONFIG']['sound_volume'] = str(self.sound_slider.value)
+        config['CONFIG']['music_volume'] = str(self.music_slider.value)
 
         self.game.fps = new_fps
         self.game.debug_items[2].update_text(f'FPS cap: {self.game.fps}')
