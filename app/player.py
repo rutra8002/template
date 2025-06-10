@@ -67,7 +67,9 @@ class Player:
         self.y += self.vy * self.game.delta_time
 
         if self.space:
-            self.vx += self.speed
+            angle_rad = math.radians(self.angle)
+            self.vx += self.speed * math.cos(angle_rad)
+            self.vy += self.speed * math.sin(angle_rad)
             self.space = False
 
         if self.x < -self.width:
