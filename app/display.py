@@ -33,7 +33,7 @@ class basic_display:
 
 class game_display(basic_display):
     def __init__(self, game):
-        basic_display.__init__(self, game)
+        super().__init__(game)
         self.player = player.Player(self.game)
 
         self.player_text = custom_text.Custom_text(self, self.game.width/2, self.game.height/2, f"{int(self.player.vx)}, {int(self.player.vy)}", text_color='white')
@@ -57,7 +57,7 @@ class game_display(basic_display):
 
 class main_menu_display(basic_display):
     def __init__(self, game):
-        basic_display.__init__(self, game)
+        super().__init__(game)
 
         self.particle_system = particle_system.ParticleSystem()
 
@@ -165,7 +165,7 @@ class main_menu_display(basic_display):
 
 class options_display(basic_display):
     def __init__(self, game):
-        basic_display.__init__(self, game)
+        super().__init__(game)
         self.from_pause = False
         self.game = game
         self.title = custom_text.Custom_text(
@@ -304,7 +304,7 @@ class options_display(basic_display):
 
 class pause_menu_display(basic_display):
     def __init__(self, game):
-        basic_display.__init__(self, game)
+        super().__init__(game)
 
         # Create semi-transparent overlay
         self.overlay = pygame.Surface((game.width, game.height), pygame.SRCALPHA)
