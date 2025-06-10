@@ -36,21 +36,26 @@ class Player(PhyObject):
 
 
     def update(self):
+        self.apply_movement_forces()
+        super().update_physics()
+        self.apply_movement_forces()
+        self.set_mouse_angle()
+
+    def apply_movement_forces(self):
         if self.w:
-            self.apply_force(0, -self.speed)
+            self.apply_force(0, -self.speed / 2)
         if self.s:
-            self.apply_force(0, self.speed)
+            self.apply_force(0, self.speed / 2)
         if self.a:
-            self.apply_force(-self.speed, 0)
+            self.apply_force(-self.speed / 2, 0)
         if self.d:
-            self.apply_force(self.speed, 0)
+            self.apply_force(self.speed / 2, 0)
 
         if self.space:
-            self.apply_thrust(self.speed)
+            self.apply_thrust(self.speed / 2)
             self.space = False
 
-        super().update_physics()
-
+    def set_mouse_angle(self):
         mouse_x, mouse_y = pygame.mouse.get_pos()
         player_center_x = self.x + self.width / 2
         player_center_y = self.y + self.height / 2
