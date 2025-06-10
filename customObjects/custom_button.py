@@ -27,13 +27,13 @@ class Button:  # A button class
 
     def render(self):  # Rendering a button on screen
         if self.rect.collidepoint(pygame.mouse.get_pos()):
-            pygame.draw.rect(self.display.screen, self.get_hover_color(), self.rect, border_radius=10)
+            pygame.draw.rect(self.display.screen, self.get_hover_color(), self.rect, border_radius=0)
         else:
-            pygame.draw.rect(self.display.screen, self.color, self.rect, border_radius=10)
+            pygame.draw.rect(self.display.screen, self.color, self.rect, border_radius=0)
 
 
         if self.outline_color != None:
-            pygame.draw.rect(self.display.screen, self.outline_color, self.rect, self.outline_width, border_radius=10)
+            pygame.draw.rect(self.display.screen, self.outline_color, self.rect, self.outline_width, border_radius=0)
 
     def events(self, event):  # Checks events
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(event.pos):
